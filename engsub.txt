@@ -1,0 +1,28 @@
+now, even though I just said you need to watch the stat quest on gradient descent, let's do a little review to demonstrate 
+the problem that stochastic gradient descent solves. In the stat quest on gradient descent, we took this simple data set height and weight measurements from three different people and we want
+to fit a line to it using gradient descent. However at first we started out with this generic equation for a line and the goal was to find the optimal 
+values for the intercept and the slope. for example if we started with the intercept equals 0 and the slope equals 
+1 then we could use weght to predict height. then we would use the sum of the squared residuals as the loss function to determine how well the initial line fit the data
+note: the sum of the squared residuals is just one of many different loss functions that can evaluate how well something fits the data. In this case that something is a line. 
+to find the optimal values for the intercept and slope we plug gedthe equation for the predicted height into the sum of 
+the squared residuals. then we took the residuals with respect to the intercept and with respect to the slope. then we plugged in the values from the observed data into the derivative with respect to
+the intercept and then we did the same thing for the derivative with respect to the slope. then we plugged in the initial 
+guess for the intercept 0 and the initial guess for the slope 1 we did the math 
+plug the slopes into the step size formulas and multiplied by the learning rate which we set to 0.01  
+then we did the math calculated the new intercept and new 
+slope by plugging in the old intercept 
+an old slope and the step sizes and we 
+did the math and we ended up with a new intercept and a new slope then we went back to the derivatives and 
+repeated the process a lot of times until we took the maximum number of 
+steps or the steps became very very small. In this super simple example we were just fitting a line with two parametrt, the intercept and the slope and we only had three data points. so we only had three terms to compute
+each step for the intercept and we only had three terms to compute each step for the slope so each step didn't require 
+much math. But what if we had a more complicated model like a logistic regression that used 23,000 genes to predict if someone will have a disease. then we will have 23,000 derivatives to plug the data into and what if we have data from 1 million
+samples then we would have to calculate 1 million terms for each of the 23,000 derivatives. in other words we'd have to calculate 23 billion terms for each step and since it's common to take at least 1,000 steps we would calculate at least 2300000000000 terms. 
+so for big data gradient descent is slow this is where stochastic gradient descent comes in handy going back to our super simple example. stochastic gradient descent would randomly pick one sample for each step and just use that one sample to
+ calculate the derivatives thus in this super simple example stochastic gradient descent reduced the number of terms computed by a factor of three. if we had 1 million samples then stochastic gradient descent would reduce the amount of terms computed by a factor
+
+of 1 million so that's pretty cool stochastic gradient descent is especially useful when there are redundancies in the data. for example we have 12 data points but there is a lot of redundancy that forms 
+three clusters. 
+so we start with a line with the intercept equals 0 and the slope equals 1 then we randomly pick this point so we plug in the wait three and height three point three do the math plug in the slopes.
+then multiply by the learning rate note just like with regular gradient descent stochastic gradient descent is sensitive to the value you choose for 
+the learning rate and just like for regular gradient descent the general strategy is to start with a relatively large learning rate and make it smaller with each step and lastly just like for regular gradient descent many implementations of
